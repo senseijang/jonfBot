@@ -8,6 +8,11 @@ text_file = open("quotes.txt", "r")
 lines = text_file.readlines()
 text_file.close()
 
+# importing quotes from nick.txt 
+nick_file = open("nick.txt", "r")
+nickLines = nick_file.readlines()
+nick_file.close()
+
 client = discord.Client()
 
 @client.event
@@ -20,8 +25,14 @@ async def on_message(message):
         return
 
     if message.content.startswith('!random'):
-        quoteInt = (random.randrange(len(lines)))
-        await message.channel.send(lines[quoteInt])
+      quoteInt = (random.randrange(len(lines)))
+      await message.channel.send(lines[quoteInt])
+
+    if message.content.startswith('!nick'):
+      nickInt = (random.randrange(len(nickLines)))
+      await message.channel.send(nickLines[nickInt])
+      
+
 
 
 # logging in the bot into discord.
